@@ -31,7 +31,10 @@ public class RBIndex {
 
     /** Equality lookup: encode the query token, find postings by RB key. */
     public List<Integer> findRowIds(String rawToken) {
-        String bits = codec.encode(rawToken);
+        String bits = codec.tryEncode(rawToken);
+        if (bits == null) {
+            return Collections.emptyList();
+        }
         int k = rbKeyFromBits(bits);
         return tree.get(k);
     }
@@ -44,6 +47,16 @@ public class RBIndex {
     /** Pretty print the RB-tree (delegates to your RedBlackTree.printTree()). */
     public void printTree() {
         tree.printTree();
+    }
+
+    /** Enable/disable verbose logging for RB-tree operations. */
+    public void setVerbose(boolean v) {
+        tree.setVerbose(v);
+    }
+
+    /** Enable/disable snapshots after each fix-up step. */
+    public void setSnapshotAfterFixup(boolean v) {
+        tree.setSnapshotAfterFixup(v);
     }
 
     /** Convert Huffman bitstring into an int key for the RB-tree. */

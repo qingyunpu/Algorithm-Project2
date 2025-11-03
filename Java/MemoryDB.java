@@ -17,6 +17,8 @@ public class MemoryDB {
 
     private Node head, tail;
     private int size = 0;
+    // Detected CSV delimiter (default comma). Updated when reading header.
+    private char delimiter = ',';
 
     // Optional: id -> Student direct index for fast retrieval
     private final ArrayList<Student> idIndex = new ArrayList<>();
@@ -50,6 +52,8 @@ public class MemoryDB {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String header = br.readLine();
             if (header == null) throw new RuntimeException("Empty CSV");
+            // Detect delimiter from header (prefer ';' if present exclusively)
+            this.delimiter = detectDelimiter(header);
             String[] cols = splitCsv(header);
 
             int idxGuardian = indexOf(cols, "guardian");
@@ -85,8 +89,41 @@ public class MemoryDB {
         try { return Integer.parseInt(s); } catch (Exception e) { return def; }
     }
 
-    private static String[] splitCsv(String line) {
-        // This dataset is simple (no quoted commas). For general CSVs, use a proper parser.
-        return line.split(",");
+    private static char detectDelimiter(String headerLine) {
+        boolean hasComma = headerLine.indexOf(',') >= 0;
+        boolean hasSemi  = headerLine.indexOf(';') >= 0;
+        if (hasSemi && !hasComma) return ';';
+        return ','; // default and also when both appear
+    }
+
+    private String[] splitCsv(String line) {
+        return parseCsv(line, this.delimiter);
+    }
+
+    // Minimal CSV parser with quote support and configurable delimiter.
+    // Handles quotes and escaped quotes ("").
+    private static String[] parseCsv(String line, char delim) {
+        ArrayList<String> out = new ArrayList<>();
+        StringBuilder cur = new StringBuilder();
+        boolean inQuotes = false;
+        for (int i = 0; i < line.length(); i++) {
+            char c = line.charAt(i);
+            if (c == '"') {
+                if (inQuotes && i + 1 < line.length() && line.charAt(i + 1) == '"') {
+                    // Escaped quote
+                    cur.append('"');
+                    i++;
+                } else {
+                    inQuotes = !inQuotes;
+                }
+            } else if (c == delim && !inQuotes) {
+                out.add(cur.toString());
+                cur.setLength(0);
+            } else {
+                cur.append(c);
+            }
+        }
+        out.add(cur.toString());
+        return out.toArray(new String[0]);
     }
 }

@@ -103,6 +103,16 @@ public class HuffmanCodec {
         return bits;
     }
 
+    /** Check if a token exists in the codebook. */
+    public boolean containsToken(String token) {
+        return enc.containsKey(token);
+    }
+
+    /** Try to encode a token; return null if not present (no exception). */
+    public String tryEncode(String token) {
+        return enc.get(token);
+    }
+
     /** Print codebook sorted by token (for your report) */
     public void printCodebook() {
         ArrayList<String> keys = new ArrayList<>(enc.keySet());

@@ -34,11 +34,18 @@ public class RedBlackTree {
 
     private final Node NIL = new Node(0); // sentinel
     private Node root = NIL;
+    private boolean verbose = false;
+    private boolean snapshotAfterFixup = false;
 
     public RedBlackTree() {
         NIL.color = BLACK;
         NIL.left = NIL.right = NIL.parent = NIL;
     }
+
+    public void setVerbose(boolean v) { this.verbose = v; }
+    private void log(String s) { if (verbose) System.out.println(s); }
+    public void setSnapshotAfterFixup(boolean v) { this.snapshotAfterFixup = v; }
+    private void snap(String label) { if (snapshotAfterFixup) { System.out.println("[RB SNAP] " + label); printTree(); } }
 
     /** Insert (key,rowId). Duplicate key → append postings, no rotations needed. */
     public void insert(int key, int rowId) {
@@ -47,6 +54,7 @@ public class RedBlackTree {
             y = x;
             if (key == x.key) {            // duplicate → aggregate
                 x.postings.add(rowId);
+                log("append posting: key=" + key + " rowId=" + rowId);
                 return;
             } else if (key < x.key) x = x.left;
             else                    x = x.right;
@@ -61,6 +69,7 @@ public class RedBlackTree {
         else                    y.right = z;
 
         z.color = RED;
+        log("insert key=" + key + "; start fixup");
         insertFixup(z);
     }
 
@@ -95,47 +104,62 @@ public class RedBlackTree {
                 Node y = z.parent.parent.right; // uncle
                 if (y.color == RED) {
                     // Case 1
+                    log("fixup case1: recolor parent/uncle, move up");
                     z.parent.color = BLACK;
                     y.color = BLACK;
                     z.parent.parent.color = RED;
                     z = z.parent.parent;
+                    snap("after case1");
                 } else {
                     if (z == z.parent.right) {
                         // Case 2
+                        log("fixup case2: left-rotate parent");
                         z = z.parent;
                         leftRotate(z);
+                        snap("after case2");
                     }
                     // Case 3
+                    log("fixup case3: right-rotate grandparent");
                     z.parent.color = BLACK;
                     z.parent.parent.color = RED;
                     rightRotate(z.parent.parent);
+                    snap("after case3");
                 }
             } else { // mirror
                 Node y = z.parent.parent.left;
                 if (y.color == RED) {
                     // Case 1 mirror
+                    log("fixup case1(mirror): recolor parent/uncle, move up");
                     z.parent.color = BLACK;
                     y.color = BLACK;
                     z.parent.parent.color = RED;
                     z = z.parent.parent;
+                    snap("after case1(mirror)");
                 } else {
                     if (z == z.parent.left) {
                         // Case 2 mirror
+                        log("fixup case2(mirror): right-rotate parent");
                         z = z.parent;
                         rightRotate(z);
+                        snap("after case2(mirror)");
                     }
                     // Case 3 mirror
+                    log("fixup case3(mirror): left-rotate grandparent");
                     z.parent.color = BLACK;
                     z.parent.parent.color = RED;
                     leftRotate(z.parent.parent);
+                    snap("after case3(mirror)");
                 }
             }
         }
         root.color = BLACK;
+        log("fixup done; root black");
+        snap("after fixup done");
     }
 
     private void leftRotate(Node x) {
         Node y = x.right;
+        log("leftRotate at key=" + x.key);
         x.right = y.left;
         if (y.left != NIL) y.left.parent = x;
         y.parent = x.parent;
@@ -148,6 +172,7 @@ public class RedBlackTree {
 
     private void rightRotate(Node x) {
         Node y = x.left;
+        log("rightRotate at key=" + x.key);
         x.left = y.right;
         if (y.right != NIL) y.right.parent = x;
         y.parent = x.parent;

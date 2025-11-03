@@ -14,15 +14,30 @@ import java.io.*;
  *
  * Usage:
  *   javac Main.java MemoryDB.java Student.java HuffmanCodec.java RedBlackTree.java RBIndex.java
- *   java Main path/to/student-data.csv
+ *   java Main <csv> [out.txt]
+ *   java Main <csv> -o <out.txt>
+ *   java Main <csv> [out.txt|-o out.txt] --rb-snap (print RB snapshots after each fix-up)
  */
 public class Main {
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {
-            System.err.println("Usage: java Main <student-data.csv>");
+            System.err.println("Usage: java Main <student-data.csv> [out.txt] | -o <out.txt> [--rb-snap]");
             return;
         }
         String csvPath = args[0];
+
+        // Optional: save all output to a file (TEE to console + file)
+        String outPath = null;
+        boolean rbSnapshots = false;
+        if (args.length >= 2) {
+            for (int i = 1; i < args.length; i++) {
+                String a = args[i];
+                if ("-o".equals(a) && i + 1 < args.length) { outPath = args[++i]; }
+                else if ("--rb-snap".equals(a) || "--rb-snapshots".equals(a)) { rbSnapshots = true; }
+                else if (!a.startsWith("-") && outPath == null) { outPath = a; }
+            }
+        }
+        if (outPath != null) setupTee(outPath);
 
         // 1) Load data into memory DB
         MemoryDB db = new MemoryDB();
@@ -44,6 +59,13 @@ public class Main {
         // 4) Build RB-tree indexes using "Huffman-encoded key -> RB key (int)"
         RBIndex guardianIndex = new RBIndex("guardian", guardianCodec);
         RBIndex absencesIndex = new RBIndex("absences", absencesCodec);
+        // Enable verbose RB-tree operations for step-by-step details in screenshots
+        guardianIndex.setVerbose(true);
+        absencesIndex.setVerbose(true);
+        if (rbSnapshots) {
+            guardianIndex.setSnapshotAfterFixup(true);
+            absencesIndex.setSnapshotAfterFixup(true);
+        }
         for (Student s : db.all()) {
             guardianIndex.add(s.guardian, s.id);
             absencesIndex.add(String.valueOf(s.absences), s.id);
@@ -89,5 +111,30 @@ public class Main {
                 System.out.println("Row#" + s.id + "   guardian=" + s.guardian + "   absences=" + s.absences);
             }
         }
+    }
+
+    // ========== Output tee to console + file ==========
+    private static void setupTee(String outPath) throws Exception {
+        PrintStream console = System.out;
+        FileOutputStream fos = new FileOutputStream(outPath, false);
+        OutputStream tee = new TeeOutputStream(console, fos);
+        PrintStream ps = new PrintStream(tee, true, "UTF-8");
+        System.setOut(ps);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try { ps.flush(); } catch (Exception ignored) {}
+            try { fos.flush(); } catch (Exception ignored) {}
+            try { fos.close(); } catch (Exception ignored) {}
+        }));
+        System.err.println("[INFO] Output is being saved to: " + outPath);
+    }
+
+    private static class TeeOutputStream extends OutputStream {
+        private final OutputStream a, b;
+        TeeOutputStream(OutputStream a, OutputStream b) { this.a = a; this.b = b; }
+        public void write(int i) throws IOException { a.write(i); b.write(i); }
+        public void write(byte[] buf) throws IOException { a.write(buf); b.write(buf); }
+        public void write(byte[] buf, int off, int len) throws IOException { a.write(buf, off, len); b.write(buf, off, len); }
+        public void flush() throws IOException { a.flush(); b.flush(); }
+        public void close() throws IOException { try { a.close(); } finally { b.close(); } }
     }
 }

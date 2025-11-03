@@ -1,0 +1,3074 @@
+Huffman frequency table:
+  father : 90
+  mother : 273
+  other : 32
+
+Merge #1: 'other'[32] + 'father'[90] -> 122
+Merge #2: (internal)[122] + 'mother'[273] -> 395
+
+Huffman frequency table:
+  0 : 115
+  1 : 3
+  10 : 17
+  11 : 3
+  12 : 12
+  13 : 3
+  14 : 12
+  15 : 3
+  16 : 7
+  17 : 1
+  18 : 5
+  19 : 1
+  2 : 65
+  20 : 4
+  21 : 1
+  22 : 3
+  23 : 1
+  24 : 1
+  25 : 1
+  26 : 1
+  28 : 1
+  3 : 8
+  30 : 1
+  38 : 1
+  4 : 53
+  40 : 1
+  5 : 5
+  54 : 1
+  56 : 1
+  6 : 31
+  7 : 7
+  75 : 1
+  8 : 22
+  9 : 3
+
+Merge #1: '17'[1] + '19'[1] -> 2
+Merge #2: '21'[1] + '23'[1] -> 2
+Merge #3: '24'[1] + '25'[1] -> 2
+Merge #4: '26'[1] + '28'[1] -> 2
+Merge #5: '30'[1] + '38'[1] -> 2
+Merge #6: '40'[1] + '54'[1] -> 2
+Merge #7: '56'[1] + '75'[1] -> 2
+Merge #8: (internal)[2] + (internal)[2] -> 4
+Merge #9: (internal)[2] + (internal)[2] -> 4
+Merge #10: (internal)[2] + (internal)[2] -> 4
+Merge #11: (internal)[2] + '1'[3] -> 5
+Merge #12: '11'[3] + '13'[3] -> 6
+Merge #13: '15'[3] + '22'[3] -> 6
+Merge #14: '9'[3] + (internal)[4] -> 7
+Merge #15: (internal)[4] + (internal)[4] -> 8
+Merge #16: '20'[4] + (internal)[5] -> 9
+Merge #17: '18'[5] + '5'[5] -> 10
+Merge #18: (internal)[6] + (internal)[6] -> 12
+Merge #19: (internal)[7] + '16'[7] -> 14
+Merge #20: '7'[7] + (internal)[8] -> 15
+Merge #21: '3'[8] + (internal)[9] -> 17
+Merge #22: (internal)[10] + (internal)[12] -> 22
+Merge #23: '12'[12] + '14'[12] -> 24
+Merge #24: (internal)[14] + (internal)[15] -> 29
+Merge #25: (internal)[17] + '10'[17] -> 34
+Merge #26: (internal)[22] + '8'[22] -> 44
+Merge #27: (internal)[24] + (internal)[29] -> 53
+Merge #28: '6'[31] + (internal)[34] -> 65
+Merge #29: (internal)[44] + (internal)[53] -> 97
+Merge #30: '4'[53] + (internal)[65] -> 118
+Merge #31: '2'[65] + (internal)[97] -> 162
+Merge #32: '0'[115] + (internal)[118] -> 233
+Merge #33: (internal)[162] + (internal)[233] -> 395
+
+insert key=3; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 3[B] (postings=1)
+insert key=30; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+insert key=5; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 3[B] (postings=1)
+   ├─ NIL[B]
+   └─ 5[R] (postings=1)
+insert key=14; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+   ├─ 14[R] (postings=1)
+   └─ NIL[B]
+append posting: key=3 rowId=2
+insert key=63; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+   ├─ 14[R] (postings=1)
+   └─ 63[R] (postings=1)
+append posting: key=3 rowId=3
+insert key=4; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 30[R] (postings=1)
+   ├─ 14[B] (postings=1)
+   │  ├─ 4[R] (postings=1)
+   │  └─ NIL[B]
+   └─ 63[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+   ├─ 14[B] (postings=1)
+   │  ├─ 4[R] (postings=1)
+   │  └─ NIL[B]
+   └─ 63[B] (postings=1)
+append posting: key=5 rowId=4
+append posting: key=14 rowId=4
+append posting: key=3 rowId=5
+append posting: key=63 rowId=5
+append posting: key=3 rowId=6
+insert key=6; start fixup
+fixup case2: left-rotate parent
+leftRotate at key=4
+[RB SNAP] after case2
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+   ├─ 14[B] (postings=2)
+   │  ├─ 6[R] (postings=1)
+   │  │  ├─ 4[R] (postings=1)
+   │  │  └─ NIL[B]
+   │  └─ NIL[B]
+   └─ 63[B] (postings=2)
+fixup case3: right-rotate grandparent
+rightRotate at key=14
+[RB SNAP] after case3
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+   ├─ 6[B] (postings=1)
+   │  ├─ 4[R] (postings=1)
+   │  └─ 14[R] (postings=2)
+   └─ 63[B] (postings=2)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=1)
+   ├─ 6[B] (postings=1)
+   │  ├─ 4[R] (postings=1)
+   │  └─ 14[R] (postings=2)
+   └─ 63[B] (postings=2)
+append posting: key=3 rowId=7
+append posting: key=30 rowId=7
+append posting: key=3 rowId=8
+append posting: key=6 rowId=8
+append posting: key=3 rowId=9
+append posting: key=6 rowId=9
+append posting: key=3 rowId=10
+append posting: key=6 rowId=10
+append posting: key=5 rowId=11
+append posting: key=14 rowId=11
+append posting: key=5 rowId=12
+append posting: key=4 rowId=12
+append posting: key=3 rowId=13
+append posting: key=4 rowId=13
+insert key=4; start fixup
+fixup case2(mirror): right-rotate parent
+rightRotate at key=5
+[RB SNAP] after case2(mirror)
+(RB-tree: key[color], postings)
+└─ 3[B] (postings=10)
+   ├─ NIL[B]
+   └─ 4[R] (postings=1)
+      ├─ NIL[B]
+      └─ 5[R] (postings=4)
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=3
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 4[B] (postings=1)
+   ├─ 3[R] (postings=10)
+   └─ 5[R] (postings=4)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 4[B] (postings=1)
+   ├─ 3[R] (postings=10)
+   └─ 5[R] (postings=4)
+append posting: key=6 rowId=14
+append posting: key=3 rowId=15
+append posting: key=14 rowId=15
+append posting: key=3 rowId=16
+append posting: key=30 rowId=16
+append posting: key=3 rowId=17
+append posting: key=14 rowId=17
+append posting: key=3 rowId=18
+insert key=93; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[B] (postings=5)
+   │  ├─ 4[R] (postings=3)
+   │  └─ 14[R] (postings=5)
+   └─ 63[B] (postings=2)
+      ├─ NIL[B]
+      └─ 93[R] (postings=1)
+append posting: key=5 rowId=19
+append posting: key=14 rowId=19
+append posting: key=3 rowId=20
+append posting: key=6 rowId=20
+append posting: key=5 rowId=21
+append posting: key=6 rowId=21
+append posting: key=3 rowId=22
+append posting: key=4 rowId=22
+append posting: key=3 rowId=23
+append posting: key=6 rowId=23
+append posting: key=3 rowId=24
+append posting: key=4 rowId=24
+append posting: key=3 rowId=25
+insert key=45; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[B] (postings=8)
+   │  ├─ 4[R] (postings=5)
+   │  └─ 14[R] (postings=6)
+   └─ 63[B] (postings=2)
+      ├─ 45[R] (postings=1)
+      └─ 93[R] (postings=1)
+append posting: key=3 rowId=26
+append posting: key=4 rowId=26
+append posting: key=3 rowId=27
+append posting: key=14 rowId=27
+append posting: key=3 rowId=28
+append posting: key=14 rowId=28
+append posting: key=3 rowId=29
+append posting: key=93 rowId=29
+append posting: key=3 rowId=30
+append posting: key=6 rowId=30
+append posting: key=3 rowId=31
+append posting: key=6 rowId=31
+append posting: key=3 rowId=32
+append posting: key=6 rowId=32
+append posting: key=3 rowId=33
+append posting: key=6 rowId=33
+append posting: key=3 rowId=34
+append posting: key=6 rowId=34
+append posting: key=5 rowId=35
+append posting: key=6 rowId=35
+append posting: key=3 rowId=36
+append posting: key=4 rowId=36
+append posting: key=3 rowId=37
+insert key=94; start fixup
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[B] (postings=14)
+   │  ├─ 4[R] (postings=7)
+   │  └─ 14[R] (postings=8)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=1)
+      └─ 93[B] (postings=2)
+         ├─ NIL[B]
+         └─ 94[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[B] (postings=14)
+   │  ├─ 4[R] (postings=7)
+   │  └─ 14[R] (postings=8)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=1)
+      └─ 93[B] (postings=2)
+         ├─ NIL[B]
+         └─ 94[R] (postings=1)
+append posting: key=3 rowId=38
+append posting: key=4 rowId=38
+append posting: key=3 rowId=39
+insert key=21; start fixup
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[R] (postings=14)
+   │  ├─ 4[B] (postings=8)
+   │  └─ 14[B] (postings=8)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=1)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=1)
+      └─ 93[B] (postings=2)
+         ├─ NIL[B]
+         └─ 94[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[R] (postings=14)
+   │  ├─ 4[B] (postings=8)
+   │  └─ 14[B] (postings=8)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=1)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=1)
+      └─ 93[B] (postings=2)
+         ├─ NIL[B]
+         └─ 94[R] (postings=1)
+append posting: key=3 rowId=40
+insert key=741; start fixup
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=93
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[R] (postings=14)
+   │  ├─ 4[B] (postings=8)
+   │  └─ 14[B] (postings=8)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=1)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=1)
+      └─ 94[B] (postings=1)
+         ├─ 93[R] (postings=2)
+         └─ 741[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[R] (postings=14)
+   │  ├─ 4[B] (postings=8)
+   │  └─ 14[B] (postings=8)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=1)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=1)
+      └─ 94[B] (postings=1)
+         ├─ 93[R] (postings=2)
+         └─ 741[R] (postings=1)
+append posting: key=4 rowId=41
+append posting: key=21 rowId=41
+append posting: key=5 rowId=42
+append posting: key=4 rowId=42
+append posting: key=5 rowId=43
+append posting: key=6 rowId=43
+append posting: key=5 rowId=44
+append posting: key=45 rowId=44
+append posting: key=3 rowId=45
+append posting: key=21 rowId=45
+append posting: key=3 rowId=46
+insert key=44; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=3)
+   ├─ 6[R] (postings=15)
+   │  ├─ 4[B] (postings=9)
+   │  └─ 14[B] (postings=8)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=3)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=2)
+      │  ├─ 44[R] (postings=1)
+      │  └─ NIL[B]
+      └─ 94[B] (postings=1)
+         ├─ 93[R] (postings=2)
+         └─ 741[R] (postings=1)
+append posting: key=3 rowId=47
+append posting: key=14 rowId=47
+append posting: key=3 rowId=48
+append posting: key=4 rowId=48
+append posting: key=5 rowId=49
+append posting: key=4 rowId=49
+append posting: key=3 rowId=50
+append posting: key=4 rowId=50
+append posting: key=3 rowId=51
+append posting: key=4 rowId=51
+append posting: key=5 rowId=52
+append posting: key=30 rowId=52
+append posting: key=3 rowId=53
+append posting: key=6 rowId=53
+append posting: key=3 rowId=54
+append posting: key=30 rowId=54
+append posting: key=3 rowId=55
+append posting: key=21 rowId=55
+append posting: key=3 rowId=56
+append posting: key=6 rowId=56
+append posting: key=3 rowId=57
+append posting: key=14 rowId=57
+append posting: key=5 rowId=58
+append posting: key=4 rowId=58
+append posting: key=3 rowId=59
+append posting: key=4 rowId=59
+append posting: key=3 rowId=60
+append posting: key=30 rowId=60
+append posting: key=5 rowId=61
+append posting: key=30 rowId=61
+append posting: key=5 rowId=62
+append posting: key=14 rowId=62
+append posting: key=3 rowId=63
+append posting: key=4 rowId=63
+append posting: key=5 rowId=64
+append posting: key=6 rowId=64
+append posting: key=3 rowId=65
+append posting: key=4 rowId=65
+append posting: key=3 rowId=66
+append posting: key=14 rowId=66
+append posting: key=3 rowId=67
+append posting: key=14 rowId=67
+append posting: key=3 rowId=68
+append posting: key=4 rowId=68
+append posting: key=5 rowId=69
+append posting: key=44 rowId=69
+append posting: key=5 rowId=70
+append posting: key=6 rowId=70
+append posting: key=3 rowId=71
+append posting: key=6 rowId=71
+append posting: key=3 rowId=72
+append posting: key=4 rowId=72
+append posting: key=3 rowId=73
+append posting: key=4 rowId=73
+append posting: key=3 rowId=74
+insert key=763; start fixup
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=7)
+   ├─ 6[R] (postings=20)
+   │  ├─ 4[B] (postings=20)
+   │  └─ 14[B] (postings=13)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=4)
+   └─ 63[R] (postings=2)
+      ├─ 45[B] (postings=2)
+      │  ├─ 44[R] (postings=2)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         └─ 741[B] (postings=1)
+            ├─ NIL[B]
+            └─ 763[R] (postings=1)
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 30[R] (postings=7)
+   ├─ 6[B] (postings=20)
+   │  ├─ 4[B] (postings=20)
+   │  └─ 14[B] (postings=13)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=4)
+   └─ 63[B] (postings=2)
+      ├─ 45[B] (postings=2)
+      │  ├─ 44[R] (postings=2)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         └─ 741[B] (postings=1)
+            ├─ NIL[B]
+            └─ 763[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=7)
+   ├─ 6[B] (postings=20)
+   │  ├─ 4[B] (postings=20)
+   │  └─ 14[B] (postings=13)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=4)
+   └─ 63[B] (postings=2)
+      ├─ 45[B] (postings=2)
+      │  ├─ 44[R] (postings=2)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         └─ 741[B] (postings=1)
+            ├─ NIL[B]
+            └─ 763[R] (postings=1)
+append posting: key=3 rowId=75
+append posting: key=30 rowId=75
+append posting: key=3 rowId=76
+append posting: key=21 rowId=76
+append posting: key=3 rowId=77
+append posting: key=6 rowId=77
+append posting: key=3 rowId=78
+append posting: key=4 rowId=78
+append posting: key=3 rowId=79
+append posting: key=44 rowId=79
+append posting: key=5 rowId=80
+append posting: key=4 rowId=80
+append posting: key=3 rowId=81
+append posting: key=14 rowId=81
+append posting: key=3 rowId=82
+append posting: key=63 rowId=82
+append posting: key=3 rowId=83
+append posting: key=14 rowId=83
+append posting: key=5 rowId=84
+append posting: key=4 rowId=84
+append posting: key=5 rowId=85
+append posting: key=30 rowId=85
+append posting: key=3 rowId=86
+append posting: key=14 rowId=86
+append posting: key=3 rowId=87
+append posting: key=14 rowId=87
+append posting: key=5 rowId=88
+append posting: key=44 rowId=88
+append posting: key=3 rowId=89
+insert key=80; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=9)
+   ├─ 6[B] (postings=21)
+   │  ├─ 4[B] (postings=23)
+   │  └─ 14[B] (postings=17)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=5)
+   └─ 63[B] (postings=3)
+      ├─ 45[B] (postings=2)
+      │  ├─ 44[R] (postings=4)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         │  ├─ 80[R] (postings=1)
+         │  └─ NIL[B]
+         └─ 741[B] (postings=1)
+            ├─ NIL[B]
+            └─ 763[R] (postings=1)
+append posting: key=3 rowId=90
+append posting: key=6 rowId=90
+append posting: key=3 rowId=91
+append posting: key=14 rowId=91
+append posting: key=5 rowId=92
+append posting: key=14 rowId=92
+append posting: key=3 rowId=93
+append posting: key=6 rowId=93
+append posting: key=3 rowId=94
+append posting: key=30 rowId=94
+append posting: key=3 rowId=95
+append posting: key=4 rowId=95
+append posting: key=3 rowId=96
+append posting: key=4 rowId=96
+append posting: key=3 rowId=97
+append posting: key=4 rowId=97
+append posting: key=3 rowId=98
+append posting: key=30 rowId=98
+append posting: key=3 rowId=99
+append posting: key=6 rowId=99
+append posting: key=3 rowId=100
+append posting: key=45 rowId=100
+append posting: key=5 rowId=101
+append posting: key=6 rowId=101
+append posting: key=3 rowId=102
+append posting: key=14 rowId=102
+append posting: key=3 rowId=103
+insert key=1004; start fixup
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=741
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=11)
+   ├─ 6[B] (postings=25)
+   │  ├─ 4[B] (postings=26)
+   │  └─ 14[B] (postings=20)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=5)
+   └─ 63[B] (postings=3)
+      ├─ 45[B] (postings=3)
+      │  ├─ 44[R] (postings=4)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         │  ├─ 80[R] (postings=1)
+         │  └─ NIL[B]
+         └─ 763[B] (postings=1)
+            ├─ 741[R] (postings=1)
+            └─ 1004[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=11)
+   ├─ 6[B] (postings=25)
+   │  ├─ 4[B] (postings=26)
+   │  └─ 14[B] (postings=20)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=5)
+   └─ 63[B] (postings=3)
+      ├─ 45[B] (postings=3)
+      │  ├─ 44[R] (postings=4)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         │  ├─ 80[R] (postings=1)
+         │  └─ NIL[B]
+         └─ 763[B] (postings=1)
+            ├─ 741[R] (postings=1)
+            └─ 1004[R] (postings=1)
+append posting: key=3 rowId=104
+append posting: key=6 rowId=104
+append posting: key=5 rowId=105
+append posting: key=63 rowId=105
+append posting: key=3 rowId=106
+append posting: key=21 rowId=106
+append posting: key=5 rowId=107
+append posting: key=4 rowId=107
+append posting: key=5 rowId=108
+append posting: key=30 rowId=108
+append posting: key=3 rowId=109
+append posting: key=14 rowId=109
+append posting: key=3 rowId=110
+append posting: key=30 rowId=110
+append posting: key=5 rowId=111
+append posting: key=6 rowId=111
+append posting: key=3 rowId=112
+append posting: key=30 rowId=112
+append posting: key=3 rowId=113
+append posting: key=63 rowId=113
+append posting: key=3 rowId=114
+append posting: key=21 rowId=114
+append posting: key=5 rowId=115
+append posting: key=4 rowId=115
+append posting: key=5 rowId=116
+append posting: key=4 rowId=116
+append posting: key=5 rowId=117
+append posting: key=6 rowId=117
+append posting: key=5 rowId=118
+insert key=250; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=14)
+   ├─ 6[B] (postings=28)
+   │  ├─ 4[B] (postings=29)
+   │  └─ 14[B] (postings=21)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=7)
+   └─ 63[B] (postings=5)
+      ├─ 45[B] (postings=3)
+      │  ├─ 44[R] (postings=4)
+      │  └─ NIL[B]
+      └─ 94[R] (postings=1)
+         ├─ 93[B] (postings=2)
+         │  ├─ 80[R] (postings=1)
+         │  └─ NIL[B]
+         └─ 763[R] (postings=1)
+            ├─ 741[B] (postings=1)
+            │  ├─ 250[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1004[B] (postings=1)
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=63
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=14)
+   ├─ 6[B] (postings=28)
+   │  ├─ 4[B] (postings=29)
+   │  └─ 14[B] (postings=21)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=7)
+   └─ 94[B] (postings=1)
+      ├─ 63[R] (postings=5)
+      │  ├─ 45[B] (postings=3)
+      │  │  ├─ 44[R] (postings=4)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=2)
+      │     ├─ 80[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 741[B] (postings=1)
+         │  ├─ 250[R] (postings=1)
+         │  └─ NIL[B]
+         └─ 1004[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=14)
+   ├─ 6[B] (postings=28)
+   │  ├─ 4[B] (postings=29)
+   │  └─ 14[B] (postings=21)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=7)
+   └─ 94[B] (postings=1)
+      ├─ 63[R] (postings=5)
+      │  ├─ 45[B] (postings=3)
+      │  │  ├─ 44[R] (postings=4)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=2)
+      │     ├─ 80[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 741[B] (postings=1)
+         │  ├─ 250[R] (postings=1)
+         │  └─ NIL[B]
+         └─ 1004[B] (postings=1)
+append posting: key=5 rowId=119
+append posting: key=30 rowId=119
+append posting: key=3 rowId=120
+append posting: key=4 rowId=120
+append posting: key=5 rowId=121
+append posting: key=30 rowId=121
+append posting: key=5 rowId=122
+append posting: key=4 rowId=122
+append posting: key=3 rowId=123
+append posting: key=80 rowId=123
+append posting: key=3 rowId=124
+append posting: key=6 rowId=124
+append posting: key=5 rowId=125
+append posting: key=6 rowId=125
+append posting: key=3 rowId=126
+append posting: key=6 rowId=126
+append posting: key=4 rowId=127
+append posting: key=4 rowId=127
+append posting: key=3 rowId=128
+append posting: key=6 rowId=128
+append posting: key=3 rowId=129
+append posting: key=21 rowId=129
+append posting: key=5 rowId=130
+append posting: key=6 rowId=130
+append posting: key=3 rowId=131
+append posting: key=6 rowId=131
+append posting: key=5 rowId=132
+append posting: key=44 rowId=132
+append posting: key=5 rowId=133
+append posting: key=93 rowId=133
+append posting: key=3 rowId=134
+append posting: key=6 rowId=134
+append posting: key=3 rowId=135
+append posting: key=6 rowId=135
+append posting: key=3 rowId=136
+append posting: key=6 rowId=136
+append posting: key=4 rowId=137
+append posting: key=6 rowId=137
+append posting: key=3 rowId=138
+append posting: key=6 rowId=138
+append posting: key=3 rowId=139
+append posting: key=6 rowId=139
+append posting: key=5 rowId=140
+append posting: key=6 rowId=140
+append posting: key=5 rowId=141
+append posting: key=21 rowId=141
+append posting: key=3 rowId=142
+append posting: key=4 rowId=142
+append posting: key=3 rowId=143
+append posting: key=4 rowId=143
+append posting: key=3 rowId=144
+append posting: key=6 rowId=144
+append posting: key=5 rowId=145
+append posting: key=6 rowId=145
+append posting: key=5 rowId=146
+append posting: key=6 rowId=146
+append posting: key=3 rowId=147
+append posting: key=4 rowId=147
+append posting: key=3 rowId=148
+append posting: key=6 rowId=148
+append posting: key=3 rowId=149
+append posting: key=6 rowId=149
+append posting: key=3 rowId=150
+append posting: key=6 rowId=150
+append posting: key=3 rowId=151
+append posting: key=30 rowId=151
+append posting: key=4 rowId=152
+append posting: key=21 rowId=152
+append posting: key=3 rowId=153
+append posting: key=6 rowId=153
+append posting: key=3 rowId=154
+append posting: key=6 rowId=154
+append posting: key=3 rowId=155
+append posting: key=4 rowId=155
+append posting: key=3 rowId=156
+append posting: key=21 rowId=156
+append posting: key=3 rowId=157
+append posting: key=30 rowId=157
+append posting: key=3 rowId=158
+append posting: key=4 rowId=158
+append posting: key=5 rowId=159
+append posting: key=14 rowId=159
+append posting: key=3 rowId=160
+append posting: key=6 rowId=160
+append posting: key=3 rowId=161
+append posting: key=30 rowId=161
+append posting: key=3 rowId=162
+append posting: key=6 rowId=162
+append posting: key=5 rowId=163
+append posting: key=4 rowId=163
+append posting: key=3 rowId=164
+append posting: key=6 rowId=164
+append posting: key=3 rowId=165
+append posting: key=93 rowId=165
+append posting: key=5 rowId=166
+append posting: key=14 rowId=166
+append posting: key=5 rowId=167
+append posting: key=6 rowId=167
+append posting: key=3 rowId=168
+append posting: key=6 rowId=168
+append posting: key=3 rowId=169
+append posting: key=6 rowId=169
+append posting: key=5 rowId=170
+append posting: key=6 rowId=170
+append posting: key=3 rowId=171
+append posting: key=4 rowId=171
+append posting: key=3 rowId=172
+append posting: key=6 rowId=172
+append posting: key=3 rowId=173
+append posting: key=6 rowId=173
+append posting: key=3 rowId=174
+append posting: key=14 rowId=174
+append posting: key=3 rowId=175
+append posting: key=14 rowId=175
+append posting: key=3 rowId=176
+append posting: key=4 rowId=176
+append posting: key=5 rowId=177
+append posting: key=14 rowId=177
+append posting: key=3 rowId=178
+append posting: key=63 rowId=178
+append posting: key=3 rowId=179
+append posting: key=14 rowId=179
+append posting: key=3 rowId=180
+append posting: key=63 rowId=180
+append posting: key=3 rowId=181
+append posting: key=4 rowId=181
+append posting: key=5 rowId=182
+append posting: key=6 rowId=182
+append posting: key=3 rowId=183
+insert key=742; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=19)
+   ├─ 6[B] (postings=59)
+   │  ├─ 4[B] (postings=41)
+   │  └─ 14[B] (postings=27)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=11)
+   └─ 94[B] (postings=1)
+      ├─ 63[R] (postings=7)
+      │  ├─ 45[B] (postings=3)
+      │  │  ├─ 44[R] (postings=5)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=4)
+      │     ├─ 80[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 741[B] (postings=1)
+         │  ├─ 250[R] (postings=1)
+         │  └─ 742[R] (postings=1)
+         └─ 1004[B] (postings=1)
+append posting: key=3 rowId=184
+append posting: key=45 rowId=184
+append posting: key=3 rowId=185
+append posting: key=44 rowId=185
+append posting: key=3 rowId=186
+append posting: key=4 rowId=186
+append posting: key=3 rowId=187
+append posting: key=6 rowId=187
+append posting: key=3 rowId=188
+append posting: key=30 rowId=188
+append posting: key=3 rowId=189
+append posting: key=14 rowId=189
+append posting: key=3 rowId=190
+append posting: key=63 rowId=190
+append posting: key=3 rowId=191
+append posting: key=6 rowId=191
+append posting: key=4 rowId=192
+append posting: key=44 rowId=192
+append posting: key=3 rowId=193
+append posting: key=21 rowId=193
+append posting: key=5 rowId=194
+append posting: key=6 rowId=194
+append posting: key=5 rowId=195
+append posting: key=6 rowId=195
+append posting: key=3 rowId=196
+append posting: key=14 rowId=196
+append posting: key=5 rowId=197
+append posting: key=21 rowId=197
+append posting: key=3 rowId=198
+insert key=740; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=20)
+   ├─ 6[B] (postings=63)
+   │  ├─ 4[B] (postings=42)
+   │  └─ 14[B] (postings=29)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[B] (postings=1)
+      ├─ 63[R] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=4)
+      │     ├─ 80[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=20)
+   ├─ 6[B] (postings=63)
+   │  ├─ 4[B] (postings=42)
+   │  └─ 14[B] (postings=29)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=4)
+      │     ├─ 80[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=20)
+   ├─ 6[B] (postings=63)
+   │  ├─ 4[B] (postings=42)
+   │  └─ 14[B] (postings=29)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=4)
+      │     ├─ 80[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+append posting: key=3 rowId=199
+append posting: key=6 rowId=199
+append posting: key=3 rowId=200
+append posting: key=4 rowId=200
+append posting: key=3 rowId=201
+append posting: key=30 rowId=201
+append posting: key=3 rowId=202
+append posting: key=14 rowId=202
+append posting: key=3 rowId=203
+append posting: key=80 rowId=203
+append posting: key=3 rowId=204
+append posting: key=30 rowId=204
+append posting: key=3 rowId=205
+insert key=1005; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=22)
+   ├─ 6[B] (postings=64)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=4)
+      │     ├─ 80[R] (postings=3)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=206
+insert key=81; start fixup
+fixup case2: left-rotate parent
+leftRotate at key=80
+[RB SNAP] after case2
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=22)
+   ├─ 6[B] (postings=64)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 93[B] (postings=4)
+      │     ├─ 81[R] (postings=1)
+      │     │  ├─ 80[R] (postings=3)
+      │     │  └─ NIL[B]
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+fixup case3: right-rotate grandparent
+rightRotate at key=93
+[RB SNAP] after case3
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=22)
+   ├─ 6[B] (postings=64)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=22)
+   ├─ 6[B] (postings=64)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=8)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=207
+append posting: key=63 rowId=207
+append posting: key=3 rowId=208
+append posting: key=30 rowId=208
+append posting: key=3 rowId=209
+append posting: key=30 rowId=209
+append posting: key=4 rowId=210
+append posting: key=63 rowId=210
+append posting: key=3 rowId=211
+insert key=165; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=64)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[B] (postings=1)
+         │  │  ├─ 165[R] (postings=1)
+         │  │  └─ 740[R] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=212
+append posting: key=6 rowId=212
+append posting: key=3 rowId=213
+insert key=166; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 763[B] (postings=1)
+         ├─ 741[R] (postings=1)
+         │  ├─ 250[R] (postings=1)
+         │  │  ├─ 165[B] (postings=1)
+         │  │  │  ├─ NIL[B]
+         │  │  │  └─ 166[R] (postings=1)
+         │  │  └─ 740[B] (postings=1)
+         │  └─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+fixup case3: right-rotate grandparent
+rightRotate at key=763
+[RB SNAP] after case3
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 741[B] (postings=1)
+         ├─ 250[R] (postings=1)
+         │  ├─ 165[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 166[R] (postings=1)
+         │  └─ 740[B] (postings=1)
+         └─ 763[R] (postings=1)
+            ├─ 742[B] (postings=1)
+            └─ 1004[B] (postings=1)
+               ├─ NIL[B]
+               └─ 1005[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=43)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=7)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 741[B] (postings=1)
+         ├─ 250[R] (postings=1)
+         │  ├─ 165[B] (postings=1)
+         │  │  ├─ NIL[B]
+         │  │  └─ 166[R] (postings=1)
+         │  └─ 740[B] (postings=1)
+         └─ 763[R] (postings=1)
+            ├─ 742[B] (postings=1)
+            └─ 1004[B] (postings=1)
+               ├─ NIL[B]
+               └─ 1005[R] (postings=1)
+append posting: key=3 rowId=214
+append posting: key=44 rowId=214
+append posting: key=3 rowId=215
+append posting: key=4 rowId=215
+append posting: key=3 rowId=216
+insert key=167; start fixup
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=165
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=44)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=8)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 741[B] (postings=1)
+         ├─ 250[R] (postings=1)
+         │  ├─ 166[B] (postings=1)
+         │  │  ├─ 165[R] (postings=1)
+         │  │  └─ 167[R] (postings=1)
+         │  └─ 740[B] (postings=1)
+         └─ 763[R] (postings=1)
+            ├─ 742[B] (postings=1)
+            └─ 1004[B] (postings=1)
+               ├─ NIL[B]
+               └─ 1005[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=44)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=8)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 741[B] (postings=1)
+         ├─ 250[R] (postings=1)
+         │  ├─ 166[B] (postings=1)
+         │  │  ├─ 165[R] (postings=1)
+         │  │  └─ 167[R] (postings=1)
+         │  └─ 740[B] (postings=1)
+         └─ 763[R] (postings=1)
+            ├─ 742[B] (postings=1)
+            └─ 1004[B] (postings=1)
+               ├─ NIL[B]
+               └─ 1005[R] (postings=1)
+append posting: key=5 rowId=217
+append posting: key=165 rowId=217
+append posting: key=5 rowId=218
+insert key=124; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=44)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=8)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 741[B] (postings=1)
+         ├─ 250[R] (postings=1)
+         │  ├─ 166[R] (postings=1)
+         │  │  ├─ 165[B] (postings=2)
+         │  │  │  ├─ 124[R] (postings=1)
+         │  │  │  └─ NIL[B]
+         │  │  └─ 167[B] (postings=1)
+         │  └─ 740[B] (postings=1)
+         └─ 763[R] (postings=1)
+            ├─ 742[B] (postings=1)
+            └─ 1004[B] (postings=1)
+               ├─ NIL[B]
+               └─ 1005[R] (postings=1)
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 30[B] (postings=24)
+   ├─ 6[B] (postings=65)
+   │  ├─ 4[B] (postings=44)
+   │  └─ 14[B] (postings=30)
+   │     ├─ NIL[B]
+   │     └─ 21[R] (postings=13)
+   └─ 94[R] (postings=1)
+      ├─ 63[B] (postings=10)
+      │  ├─ 45[B] (postings=4)
+      │  │  ├─ 44[R] (postings=8)
+      │  │  └─ NIL[B]
+      │  └─ 81[B] (postings=1)
+      │     ├─ 80[R] (postings=3)
+      │     └─ 93[R] (postings=4)
+      └─ 741[R] (postings=1)
+         ├─ 250[B] (postings=1)
+         │  ├─ 166[R] (postings=1)
+         │  │  ├─ 165[B] (postings=2)
+         │  │  │  ├─ 124[R] (postings=1)
+         │  │  │  └─ NIL[B]
+         │  │  └─ 167[B] (postings=1)
+         │  └─ 740[B] (postings=1)
+         └─ 763[B] (postings=1)
+            ├─ 742[B] (postings=1)
+            └─ 1004[B] (postings=1)
+               ├─ NIL[B]
+               └─ 1005[R] (postings=1)
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=30
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=24)
+   │  ├─ 6[B] (postings=65)
+   │  │  ├─ 4[B] (postings=44)
+   │  │  └─ 14[B] (postings=30)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=13)
+   │  └─ 63[B] (postings=10)
+   │     ├─ 45[B] (postings=4)
+   │     │  ├─ 44[R] (postings=8)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=3)
+   │        └─ 93[R] (postings=4)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=1)
+      │  ├─ 166[R] (postings=1)
+      │  │  ├─ 165[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=1)
+      │  └─ 740[B] (postings=1)
+      └─ 763[B] (postings=1)
+         ├─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=24)
+   │  ├─ 6[B] (postings=65)
+   │  │  ├─ 4[B] (postings=44)
+   │  │  └─ 14[B] (postings=30)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=13)
+   │  └─ 63[B] (postings=10)
+   │     ├─ 45[B] (postings=4)
+   │     │  ├─ 44[R] (postings=8)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=3)
+   │        └─ 93[R] (postings=4)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=1)
+      │  ├─ 166[R] (postings=1)
+      │  │  ├─ 165[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=1)
+      │  └─ 740[B] (postings=1)
+      └─ 763[B] (postings=1)
+         ├─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ NIL[B]
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=219
+append posting: key=14 rowId=219
+append posting: key=3 rowId=220
+append posting: key=4 rowId=220
+append posting: key=3 rowId=221
+append posting: key=6 rowId=221
+append posting: key=3 rowId=222
+append posting: key=4 rowId=222
+append posting: key=3 rowId=223
+append posting: key=6 rowId=223
+append posting: key=3 rowId=224
+append posting: key=6 rowId=224
+append posting: key=3 rowId=225
+append posting: key=93 rowId=225
+append posting: key=3 rowId=226
+append posting: key=63 rowId=226
+append posting: key=5 rowId=227
+append posting: key=4 rowId=227
+append posting: key=3 rowId=228
+append posting: key=45 rowId=228
+append posting: key=3 rowId=229
+append posting: key=63 rowId=229
+append posting: key=5 rowId=230
+append posting: key=45 rowId=230
+append posting: key=5 rowId=231
+append posting: key=14 rowId=231
+append posting: key=3 rowId=232
+append posting: key=45 rowId=232
+append posting: key=5 rowId=233
+append posting: key=4 rowId=233
+append posting: key=3 rowId=234
+append posting: key=80 rowId=234
+append posting: key=3 rowId=235
+append posting: key=63 rowId=235
+append posting: key=5 rowId=236
+append posting: key=14 rowId=236
+append posting: key=3 rowId=237
+append posting: key=250 rowId=237
+append posting: key=3 rowId=238
+append posting: key=4 rowId=238
+append posting: key=5 rowId=239
+append posting: key=6 rowId=239
+append posting: key=3 rowId=240
+append posting: key=45 rowId=240
+append posting: key=3 rowId=241
+append posting: key=4 rowId=241
+append posting: key=3 rowId=242
+append posting: key=6 rowId=242
+append posting: key=3 rowId=243
+append posting: key=6 rowId=243
+append posting: key=4 rowId=244
+append posting: key=6 rowId=244
+append posting: key=3 rowId=245
+append posting: key=30 rowId=245
+append posting: key=5 rowId=246
+append posting: key=14 rowId=246
+append posting: key=3 rowId=247
+append posting: key=93 rowId=247
+append posting: key=3 rowId=248
+append posting: key=21 rowId=248
+append posting: key=3 rowId=249
+append posting: key=6 rowId=249
+append posting: key=3 rowId=250
+append posting: key=6 rowId=250
+append posting: key=4 rowId=251
+append posting: key=30 rowId=251
+append posting: key=3 rowId=252
+append posting: key=14 rowId=252
+append posting: key=3 rowId=253
+append posting: key=6 rowId=253
+append posting: key=3 rowId=254
+append posting: key=6 rowId=254
+append posting: key=3 rowId=255
+append posting: key=4 rowId=255
+append posting: key=3 rowId=256
+append posting: key=30 rowId=256
+append posting: key=3 rowId=257
+append posting: key=44 rowId=257
+append posting: key=3 rowId=258
+append posting: key=21 rowId=258
+append posting: key=5 rowId=259
+append posting: key=6 rowId=259
+append posting: key=5 rowId=260
+insert key=766; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=27)
+   │  ├─ 6[B] (postings=77)
+   │  │  ├─ 4[B] (postings=51)
+   │  │  └─ 14[B] (postings=35)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=15)
+   │  └─ 63[B] (postings=13)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=1)
+      │  │  ├─ 165[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=1)
+      │  └─ 740[B] (postings=1)
+      └─ 763[B] (postings=1)
+         ├─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=261
+append posting: key=4 rowId=261
+append posting: key=3 rowId=262
+insert key=503; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=27)
+   │  ├─ 6[B] (postings=77)
+   │  │  ├─ 4[B] (postings=52)
+   │  │  └─ 14[B] (postings=35)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=15)
+   │  └─ 63[B] (postings=13)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=1)
+      │  │  ├─ 165[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 742[B] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=263
+append posting: key=14 rowId=263
+append posting: key=3 rowId=264
+append posting: key=6 rowId=264
+append posting: key=3 rowId=265
+append posting: key=165 rowId=265
+append posting: key=3 rowId=266
+append posting: key=4 rowId=266
+append posting: key=3 rowId=267
+append posting: key=21 rowId=267
+append posting: key=5 rowId=268
+append posting: key=63 rowId=268
+append posting: key=3 rowId=269
+append posting: key=6 rowId=269
+append posting: key=4 rowId=270
+append posting: key=166 rowId=270
+append posting: key=5 rowId=271
+append posting: key=14 rowId=271
+append posting: key=3 rowId=272
+append posting: key=4 rowId=272
+append posting: key=3 rowId=273
+append posting: key=4 rowId=273
+append posting: key=3 rowId=274
+append posting: key=4 rowId=274
+append posting: key=3 rowId=275
+append posting: key=30 rowId=275
+append posting: key=3 rowId=276
+insert key=743; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=28)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=56)
+   │  │  └─ 14[B] (postings=37)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=16)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=2)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 742[B] (postings=1)
+         │  ├─ NIL[B]
+         │  └─ 743[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=277
+append posting: key=167 rowId=277
+append posting: key=5 rowId=278
+append posting: key=166 rowId=278
+append posting: key=3 rowId=279
+append posting: key=21 rowId=279
+append posting: key=3 rowId=280
+insert key=760; start fixup
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=742
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=28)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=56)
+   │  │  └─ 14[B] (postings=37)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=2)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            └─ 1005[R] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=28)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=56)
+   │  │  └─ 14[B] (postings=37)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=2)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            └─ 1005[R] (postings=1)
+append posting: key=3 rowId=281
+insert key=765; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=28)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=56)
+   │  │  └─ 14[B] (postings=37)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=2)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=28)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=56)
+   │  │  └─ 14[B] (postings=37)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=1)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=2)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=1)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+append posting: key=3 rowId=282
+append posting: key=503 rowId=282
+append posting: key=3 rowId=283
+append posting: key=14 rowId=283
+append posting: key=3 rowId=284
+append posting: key=14 rowId=284
+append posting: key=5 rowId=285
+append posting: key=4 rowId=285
+append posting: key=3 rowId=286
+append posting: key=81 rowId=286
+append posting: key=3 rowId=287
+append posting: key=30 rowId=287
+append posting: key=3 rowId=288
+append posting: key=30 rowId=288
+append posting: key=3 rowId=289
+insert key=184; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=30)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=39)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=2)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=2)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+append posting: key=3 rowId=290
+insert key=164; start fixup
+fixup case2: left-rotate parent
+leftRotate at key=124
+[RB SNAP] after case2
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=30)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=39)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=2)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 165[B] (postings=3)
+      │  │  │  ├─ 164[R] (postings=1)
+      │  │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  │  └─ NIL[B]
+      │  │  │  └─ NIL[B]
+      │  │  └─ 167[B] (postings=2)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+fixup case3: right-rotate grandparent
+rightRotate at key=165
+[RB SNAP] after case3
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=30)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=39)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=2)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=2)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=30)
+   │  ├─ 6[B] (postings=79)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=39)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=17)
+   │  └─ 63[B] (postings=14)
+   │     ├─ 45[B] (postings=8)
+   │     │  ├─ 44[R] (postings=9)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=2)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=2)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=2)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[R] (postings=1)
+         │  └─ 760[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+append posting: key=3 rowId=291
+append posting: key=6 rowId=291
+append posting: key=3 rowId=292
+append posting: key=44 rowId=292
+append posting: key=3 rowId=293
+append posting: key=30 rowId=293
+append posting: key=3 rowId=294
+append posting: key=21 rowId=294
+append posting: key=3 rowId=295
+append posting: key=14 rowId=295
+append posting: key=4 rowId=296
+append posting: key=6 rowId=296
+append posting: key=4 rowId=297
+append posting: key=63 rowId=297
+append posting: key=5 rowId=298
+append posting: key=6 rowId=298
+append posting: key=3 rowId=299
+append posting: key=81 rowId=299
+append posting: key=3 rowId=300
+append posting: key=45 rowId=300
+append posting: key=5 rowId=301
+append posting: key=6 rowId=301
+append posting: key=3 rowId=302
+append posting: key=6 rowId=302
+append posting: key=5 rowId=303
+append posting: key=6 rowId=303
+append posting: key=4 rowId=304
+append posting: key=250 rowId=304
+append posting: key=4 rowId=305
+append posting: key=21 rowId=305
+append posting: key=4 rowId=306
+append posting: key=6 rowId=306
+append posting: key=4 rowId=307
+insert key=761; start fixup
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=86)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=40)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=19)
+   │  └─ 63[B] (postings=15)
+   │     ├─ 45[B] (postings=9)
+   │     │  ├─ 44[R] (postings=10)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=3)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=2)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[R] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 760[B] (postings=1)
+         │     ├─ NIL[B]
+         │     └─ 761[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=86)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=40)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=19)
+   │  └─ 63[B] (postings=15)
+   │     ├─ 45[B] (postings=9)
+   │     │  ├─ 44[R] (postings=10)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=4)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=3)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=1)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=2)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[R] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 760[B] (postings=1)
+         │     ├─ NIL[B]
+         │     └─ 761[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+append posting: key=5 rowId=308
+append posting: key=6 rowId=308
+append posting: key=4 rowId=309
+append posting: key=80 rowId=309
+append posting: key=4 rowId=310
+append posting: key=6 rowId=310
+append posting: key=4 rowId=311
+append posting: key=250 rowId=311
+append posting: key=4 rowId=312
+append posting: key=124 rowId=312
+append posting: key=4 rowId=313
+append posting: key=167 rowId=313
+append posting: key=4 rowId=314
+append posting: key=45 rowId=314
+append posting: key=4 rowId=315
+insert key=762; start fixup
+fixup case3(mirror): left-rotate grandparent
+leftRotate at key=760
+[RB SNAP] after case3(mirror)
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=88)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=40)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=19)
+   │  └─ 63[B] (postings=15)
+   │     ├─ 45[B] (postings=10)
+   │     │  ├─ 44[R] (postings=10)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=2)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[R] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=88)
+   │  │  ├─ 4[B] (postings=57)
+   │  │  └─ 14[B] (postings=40)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=19)
+   │  └─ 63[B] (postings=15)
+   │     ├─ 45[B] (postings=10)
+   │     │  ├─ 44[R] (postings=10)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=2)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=1)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[R] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ NIL[B]
+            └─ 1005[B] (postings=1)
+append posting: key=3 rowId=316
+append posting: key=6 rowId=316
+append posting: key=3 rowId=317
+append posting: key=184 rowId=317
+append posting: key=5 rowId=318
+append posting: key=6 rowId=318
+append posting: key=3 rowId=319
+append posting: key=4 rowId=319
+append posting: key=3 rowId=320
+insert key=767; start fixup
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=1)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=90)
+   │  │  ├─ 4[B] (postings=58)
+   │  │  └─ 14[B] (postings=40)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=19)
+   │  └─ 63[B] (postings=15)
+   │     ├─ 45[B] (postings=10)
+   │     │  ├─ 44[R] (postings=10)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=6)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=1)
+      │  │  │  ├─ 124[R] (postings=2)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=2)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=2)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[R] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[B] (postings=1)
+            │  ├─ 765[R] (postings=1)
+            │  └─ 767[R] (postings=1)
+            └─ 1005[B] (postings=1)
+append posting: key=3 rowId=321
+append posting: key=44 rowId=321
+append posting: key=3 rowId=322
+append posting: key=124 rowId=322
+append posting: key=5 rowId=323
+append posting: key=503 rowId=323
+append posting: key=5 rowId=324
+append posting: key=6 rowId=324
+append posting: key=3 rowId=325
+append posting: key=124 rowId=325
+append posting: key=3 rowId=326
+append posting: key=124 rowId=326
+append posting: key=3 rowId=327
+append posting: key=21 rowId=327
+append posting: key=3 rowId=328
+append posting: key=94 rowId=328
+append posting: key=3 rowId=329
+append posting: key=14 rowId=329
+append posting: key=3 rowId=330
+append posting: key=4 rowId=330
+append posting: key=5 rowId=331
+append posting: key=94 rowId=331
+append posting: key=3 rowId=332
+append posting: key=6 rowId=332
+append posting: key=4 rowId=333
+append posting: key=6 rowId=333
+append posting: key=3 rowId=334
+append posting: key=6 rowId=334
+append posting: key=3 rowId=335
+append posting: key=93 rowId=335
+append posting: key=4 rowId=336
+append posting: key=44 rowId=336
+append posting: key=3 rowId=337
+append posting: key=6 rowId=337
+append posting: key=3 rowId=338
+append posting: key=94 rowId=338
+append posting: key=3 rowId=339
+append posting: key=14 rowId=339
+append posting: key=4 rowId=340
+append posting: key=14 rowId=340
+append posting: key=5 rowId=341
+append posting: key=6 rowId=341
+append posting: key=3 rowId=342
+append posting: key=164 rowId=342
+append posting: key=5 rowId=343
+append posting: key=6 rowId=343
+append posting: key=3 rowId=344
+append posting: key=14 rowId=344
+append posting: key=3 rowId=345
+append posting: key=94 rowId=345
+append posting: key=3 rowId=346
+append posting: key=184 rowId=346
+append posting: key=3 rowId=347
+append posting: key=6 rowId=347
+append posting: key=3 rowId=348
+append posting: key=6 rowId=348
+append posting: key=3 rowId=349
+append posting: key=63 rowId=349
+append posting: key=4 rowId=350
+append posting: key=21 rowId=350
+append posting: key=3 rowId=351
+append posting: key=4 rowId=351
+append posting: key=3 rowId=352
+append posting: key=94 rowId=352
+append posting: key=4 rowId=353
+append posting: key=14 rowId=353
+append posting: key=3 rowId=354
+append posting: key=14 rowId=354
+append posting: key=5 rowId=355
+append posting: key=6 rowId=355
+append posting: key=5 rowId=356
+append posting: key=14 rowId=356
+append posting: key=3 rowId=357
+append posting: key=4 rowId=357
+append posting: key=5 rowId=358
+append posting: key=14 rowId=358
+append posting: key=5 rowId=359
+append posting: key=6 rowId=359
+append posting: key=3 rowId=360
+append posting: key=6 rowId=360
+append posting: key=3 rowId=361
+append posting: key=4 rowId=361
+append posting: key=3 rowId=362
+append posting: key=6 rowId=362
+append posting: key=3 rowId=363
+append posting: key=6 rowId=363
+append posting: key=5 rowId=364
+append posting: key=6 rowId=364
+append posting: key=3 rowId=365
+append posting: key=14 rowId=365
+append posting: key=3 rowId=366
+append posting: key=6 rowId=366
+append posting: key=3 rowId=367
+append posting: key=6 rowId=367
+append posting: key=5 rowId=368
+append posting: key=6 rowId=368
+append posting: key=5 rowId=369
+append posting: key=63 rowId=369
+append posting: key=4 rowId=370
+append posting: key=14 rowId=370
+append posting: key=5 rowId=371
+append posting: key=124 rowId=371
+append posting: key=3 rowId=372
+append posting: key=21 rowId=372
+append posting: key=3 rowId=373
+append posting: key=45 rowId=373
+append posting: key=3 rowId=374
+append posting: key=6 rowId=374
+append posting: key=3 rowId=375
+append posting: key=4 rowId=375
+append posting: key=4 rowId=376
+append posting: key=14 rowId=376
+append posting: key=3 rowId=377
+append posting: key=14 rowId=377
+append posting: key=3 rowId=378
+append posting: key=6 rowId=378
+append posting: key=3 rowId=379
+insert key=764; start fixup
+fixup case1: recolor parent/uncle, move up
+[RB SNAP] after case1
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=6)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=110)
+   │  │  ├─ 4[B] (postings=63)
+   │  │  └─ 14[B] (postings=52)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=22)
+   │  └─ 63[B] (postings=17)
+   │     ├─ 45[B] (postings=11)
+   │     │  ├─ 44[R] (postings=12)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=7)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=6)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=3)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=3)
+      │     └─ NIL[B]
+      └─ 763[B] (postings=1)
+         ├─ 743[R] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[R] (postings=1)
+            ├─ 766[R] (postings=1)
+            │  ├─ 765[B] (postings=1)
+            │  │  ├─ 764[R] (postings=1)
+            │  │  └─ NIL[B]
+            │  └─ 767[B] (postings=1)
+            └─ 1005[B] (postings=1)
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=6)
+   ├─ 30[R] (postings=31)
+   │  ├─ 6[B] (postings=110)
+   │  │  ├─ 4[B] (postings=63)
+   │  │  └─ 14[B] (postings=52)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=22)
+   │  └─ 63[B] (postings=17)
+   │     ├─ 45[B] (postings=11)
+   │     │  ├─ 44[R] (postings=12)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=7)
+   └─ 741[R] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=6)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=3)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=3)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            │  ├─ 765[B] (postings=1)
+            │  │  ├─ 764[R] (postings=1)
+            │  │  └─ NIL[B]
+            │  └─ 767[B] (postings=1)
+            └─ 1005[B] (postings=1)
+fixup case1(mirror): recolor parent/uncle, move up
+[RB SNAP] after case1(mirror)
+(RB-tree: key[color], postings)
+└─ 94[R] (postings=6)
+   ├─ 30[B] (postings=31)
+   │  ├─ 6[B] (postings=110)
+   │  │  ├─ 4[B] (postings=63)
+   │  │  └─ 14[B] (postings=52)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=22)
+   │  └─ 63[B] (postings=17)
+   │     ├─ 45[B] (postings=11)
+   │     │  ├─ 44[R] (postings=12)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=7)
+   └─ 741[B] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=6)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=3)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=3)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            │  ├─ 765[B] (postings=1)
+            │  │  ├─ 764[R] (postings=1)
+            │  │  └─ NIL[B]
+            │  └─ 767[B] (postings=1)
+            └─ 1005[B] (postings=1)
+fixup done; root black
+[RB SNAP] after fixup done
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=6)
+   ├─ 30[B] (postings=31)
+   │  ├─ 6[B] (postings=110)
+   │  │  ├─ 4[B] (postings=63)
+   │  │  └─ 14[B] (postings=52)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=22)
+   │  └─ 63[B] (postings=17)
+   │     ├─ 45[B] (postings=11)
+   │     │  ├─ 44[R] (postings=12)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=3)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=7)
+   └─ 741[B] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=2)
+      │  │  │  ├─ 124[R] (postings=6)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=3)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=3)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            │  ├─ 765[B] (postings=1)
+            │  │  ├─ 764[R] (postings=1)
+            │  │  └─ NIL[B]
+            │  └─ 767[B] (postings=1)
+            └─ 1005[B] (postings=1)
+append posting: key=5 rowId=380
+append posting: key=14 rowId=380
+append posting: key=3 rowId=381
+append posting: key=81 rowId=381
+append posting: key=5 rowId=382
+append posting: key=4 rowId=382
+append posting: key=3 rowId=383
+append posting: key=6 rowId=383
+append posting: key=5 rowId=384
+append posting: key=45 rowId=384
+append posting: key=3 rowId=385
+append posting: key=4 rowId=385
+append posting: key=3 rowId=386
+append posting: key=94 rowId=386
+append posting: key=3 rowId=387
+append posting: key=6 rowId=387
+append posting: key=3 rowId=388
+append posting: key=6 rowId=388
+append posting: key=3 rowId=389
+append posting: key=6 rowId=389
+append posting: key=4 rowId=390
+append posting: key=164 rowId=390
+append posting: key=3 rowId=391
+append posting: key=124 rowId=391
+append posting: key=4 rowId=392
+append posting: key=124 rowId=392
+append posting: key=3 rowId=393
+append posting: key=6 rowId=393
+append posting: key=5 rowId=394
+append posting: key=81 rowId=394
+
+== Guardian Huffman Codebook ==
+father -> 01
+mother -> 1
+other -> 00
+
+== Absences Huffman Codebook ==
+0 -> 10
+1 -> 11110111
+10 -> 11111
+11 -> 0100100
+12 -> 01100
+13 -> 0100101
+14 -> 01101
+15 -> 0100110
+16 -> 011101
+17 -> 011111100
+18 -> 010000
+19 -> 011111101
+2 -> 00
+20 -> 1111010
+21 -> 011111110
+22 -> 0100111
+23 -> 011111111
+24 -> 011100100
+25 -> 011100101
+26 -> 111101100
+28 -> 111101101
+3 -> 111100
+30 -> 011111000
+38 -> 011111001
+4 -> 110
+40 -> 011111010
+5 -> 010001
+54 -> 011111011
+56 -> 011100110
+6 -> 1110
+7 -> 011110
+75 -> 011100111
+8 -> 0101
+9 -> 0111000
+
+== Guardian Huffman ASCII Tree ==
+(Huffman tree; left=0, right=1)
+└─ (internal) [395]
+   0 ├─ (internal) [122]
+   │  0 ├─ 'other' [32]
+   │  1 └─ 'father' [90]
+   1 └─ 'mother' [273]
+
+== Absences Huffman ASCII Tree ==
+(Huffman tree; left=0, right=1)
+└─ (internal) [395]
+   0 ├─ (internal) [162]
+   │  0 ├─ '2' [65]
+   │  1 └─ (internal) [97]
+   │     0 ├─ (internal) [44]
+   │     │  0 ├─ (internal) [22]
+   │     │  │  0 ├─ (internal) [10]
+   │     │  │  │  0 ├─ '18' [5]
+   │     │  │  │  1 └─ '5' [5]
+   │     │  │  1 └─ (internal) [12]
+   │     │  │     0 ├─ (internal) [6]
+   │     │  │     │  0 ├─ '11' [3]
+   │     │  │     │  1 └─ '13' [3]
+   │     │  │     1 └─ (internal) [6]
+   │     │  │        0 ├─ '15' [3]
+   │     │  │        1 └─ '22' [3]
+   │     │  1 └─ '8' [22]
+   │     1 └─ (internal) [53]
+   │        0 ├─ (internal) [24]
+   │        │  0 ├─ '12' [12]
+   │        │  1 └─ '14' [12]
+   │        1 └─ (internal) [29]
+   │           0 ├─ (internal) [14]
+   │           │  0 ├─ (internal) [7]
+   │           │  │  0 ├─ '9' [3]
+   │           │  │  1 └─ (internal) [4]
+   │           │  │     0 ├─ (internal) [2]
+   │           │  │     │  0 ├─ '24' [1]
+   │           │  │     │  1 └─ '25' [1]
+   │           │  │     1 └─ (internal) [2]
+   │           │  │        0 ├─ '56' [1]
+   │           │  │        1 └─ '75' [1]
+   │           │  1 └─ '16' [7]
+   │           1 └─ (internal) [15]
+   │              0 ├─ '7' [7]
+   │              1 └─ (internal) [8]
+   │                 0 ├─ (internal) [4]
+   │                 │  0 ├─ (internal) [2]
+   │                 │  │  0 ├─ '30' [1]
+   │                 │  │  1 └─ '38' [1]
+   │                 │  1 └─ (internal) [2]
+   │                 │     0 ├─ '40' [1]
+   │                 │     1 └─ '54' [1]
+   │                 1 └─ (internal) [4]
+   │                    0 ├─ (internal) [2]
+   │                    │  0 ├─ '17' [1]
+   │                    │  1 └─ '19' [1]
+   │                    1 └─ (internal) [2]
+   │                       0 ├─ '21' [1]
+   │                       1 └─ '23' [1]
+   1 └─ (internal) [233]
+      0 ├─ '0' [115]
+      1 └─ (internal) [118]
+         0 ├─ '4' [53]
+         1 └─ (internal) [65]
+            0 ├─ '6' [31]
+            1 └─ (internal) [34]
+               0 ├─ (internal) [17]
+               │  0 ├─ '3' [8]
+               │  1 └─ (internal) [9]
+               │     0 ├─ '20' [4]
+               │     1 └─ (internal) [5]
+               │        0 ├─ (internal) [2]
+               │        │  0 ├─ '26' [1]
+               │        │  1 └─ '28' [1]
+               │        1 └─ '1' [3]
+               1 └─ '10' [17]
+
+Guardian index distinct keys: 3
+Absences index distinct keys: 34
+
+== Guardian RB-tree ==
+(RB-tree: key[color], postings)
+└─ 4[B] (postings=32)
+   ├─ 3[R] (postings=273)
+   └─ 5[R] (postings=90)
+
+== Absences RB-tree ==
+(RB-tree: key[color], postings)
+└─ 94[B] (postings=7)
+   ├─ 30[B] (postings=31)
+   │  ├─ 6[B] (postings=115)
+   │  │  ├─ 4[B] (postings=65)
+   │  │  └─ 14[B] (postings=53)
+   │  │     ├─ NIL[B]
+   │  │     └─ 21[R] (postings=22)
+   │  └─ 63[B] (postings=17)
+   │     ├─ 45[B] (postings=12)
+   │     │  ├─ 44[R] (postings=12)
+   │     │  └─ NIL[B]
+   │     └─ 81[B] (postings=5)
+   │        ├─ 80[R] (postings=5)
+   │        └─ 93[R] (postings=7)
+   └─ 741[B] (postings=1)
+      ├─ 250[B] (postings=4)
+      │  ├─ 166[R] (postings=3)
+      │  │  ├─ 164[B] (postings=3)
+      │  │  │  ├─ 124[R] (postings=8)
+      │  │  │  └─ 165[R] (postings=3)
+      │  │  └─ 167[B] (postings=3)
+      │  │     ├─ NIL[B]
+      │  │     └─ 184[R] (postings=3)
+      │  └─ 740[B] (postings=1)
+      │     ├─ 503[R] (postings=3)
+      │     └─ NIL[B]
+      └─ 763[R] (postings=1)
+         ├─ 743[B] (postings=1)
+         │  ├─ 742[B] (postings=1)
+         │  └─ 761[B] (postings=1)
+         │     ├─ 760[R] (postings=1)
+         │     └─ 762[R] (postings=1)
+         └─ 1004[B] (postings=1)
+            ├─ 766[R] (postings=1)
+            │  ├─ 765[B] (postings=1)
+            │  │  ├─ 764[R] (postings=1)
+            │  │  └─ NIL[B]
+            │  └─ 767[B] (postings=1)
+            └─ 1005[B] (postings=1)
+
+-- Query: guardian=mother --
+Row#0   guardian=mother   absences=6
+Row#2   guardian=mother   absences=10
+Row#3   guardian=mother   absences=2
+Row#5   guardian=mother   absences=10
+Row#6   guardian=mother   absences=0
+Row#7   guardian=mother   absences=6
+Row#8   guardian=mother   absences=0
+Row#9   guardian=mother   absences=0
+Row#10   guardian=mother   absences=0
+Row#13   guardian=mother   absences=2
+Row#15   guardian=mother   absences=4
+Row#16   guardian=mother   absences=6
+Row#17   guardian=mother   absences=4
+Row#18   guardian=mother   absences=16
+Row#20   guardian=mother   absences=0
+Row#22   guardian=mother   absences=2
+Row#23   guardian=mother   absences=0
+Row#24   guardian=mother   absences=2
+Row#25   guardian=mother   absences=14
+Row#26   guardian=mother   absences=2
+Row#27   guardian=mother   absences=4
+Row#28   guardian=mother   absences=4
+Row#29   guardian=mother   absences=16
+Row#30   guardian=mother   absences=0
+Row#31   guardian=mother   absences=0
+Row#32   guardian=mother   absences=0
+Row#33   guardian=mother   absences=0
+Row#34   guardian=mother   absences=0
+Row#36   guardian=mother   absences=2
+Row#37   guardian=mother   absences=7
+Row#38   guardian=mother   absences=2
+Row#39   guardian=mother   absences=8
+Row#40   guardian=mother   absences=25
+Row#45   guardian=mother   absences=8
+Row#46   guardian=mother   absences=12
+Row#47   guardian=mother   absences=4
+Row#48   guardian=mother   absences=2
+Row#50   guardian=mother   absences=2
+Row#51   guardian=mother   absences=2
+Row#53   guardian=mother   absences=0
+Row#54   guardian=mother   absences=6
+Row#55   guardian=mother   absences=8
+Row#56   guardian=mother   absences=0
+Row#57   guardian=mother   absences=4
+Row#59   guardian=mother   absences=2
+Row#60   guardian=mother   absences=6
+Row#63   guardian=mother   absences=2
+Row#65   guardian=mother   absences=2
+Row#66   guardian=mother   absences=4
+Row#67   guardian=mother   absences=4
+Row#68   guardian=mother   absences=2
+Row#71   guardian=mother   absences=0
+Row#72   guardian=mother   absences=2
+Row#73   guardian=mother   absences=2
+Row#74   guardian=mother   absences=54
+Row#75   guardian=mother   absences=6
+Row#76   guardian=mother   absences=8
+Row#77   guardian=mother   absences=0
+Row#78   guardian=mother   absences=2
+Row#79   guardian=mother   absences=12
+Row#81   guardian=mother   absences=4
+Row#82   guardian=mother   absences=10
+Row#83   guardian=mother   absences=4
+Row#86   guardian=mother   absences=4
+Row#87   guardian=mother   absences=4
+Row#89   guardian=mother   absences=18
+Row#90   guardian=mother   absences=0
+Row#91   guardian=mother   absences=4
+Row#93   guardian=mother   absences=0
+Row#94   guardian=mother   absences=6
+Row#95   guardian=mother   absences=2
+Row#96   guardian=mother   absences=2
+Row#97   guardian=mother   absences=2
+Row#98   guardian=mother   absences=6
+Row#99   guardian=mother   absences=0
+Row#100   guardian=mother   absences=14
+Row#102   guardian=mother   absences=4
+Row#103   guardian=mother   absences=26
+Row#104   guardian=mother   absences=0
+Row#106   guardian=mother   absences=8
+Row#109   guardian=mother   absences=4
+Row#110   guardian=mother   absences=6
+Row#112   guardian=mother   absences=6
+Row#113   guardian=mother   absences=10
+Row#114   guardian=mother   absences=8
+Row#120   guardian=mother   absences=2
+Row#123   guardian=mother   absences=18
+Row#124   guardian=mother   absences=0
+Row#126   guardian=mother   absences=0
+Row#128   guardian=mother   absences=0
+Row#129   guardian=mother   absences=8
+Row#131   guardian=mother   absences=0
+Row#134   guardian=mother   absences=0
+Row#135   guardian=mother   absences=0
+Row#136   guardian=mother   absences=0
+Row#138   guardian=mother   absences=0
+Row#139   guardian=mother   absences=0
+Row#142   guardian=mother   absences=2
+Row#143   guardian=mother   absences=2
+Row#144   guardian=mother   absences=0
+Row#147   guardian=mother   absences=2
+Row#148   guardian=mother   absences=0
+Row#149   guardian=mother   absences=0
+Row#150   guardian=mother   absences=0
+Row#151   guardian=mother   absences=6
+Row#153   guardian=mother   absences=0
+Row#154   guardian=mother   absences=0
+Row#155   guardian=mother   absences=2
+Row#156   guardian=mother   absences=8
+Row#157   guardian=mother   absences=6
+Row#158   guardian=mother   absences=2
+Row#160   guardian=mother   absences=0
+Row#161   guardian=mother   absences=6
+Row#162   guardian=mother   absences=0
+Row#164   guardian=mother   absences=0
+Row#165   guardian=mother   absences=16
+Row#168   guardian=mother   absences=0
+Row#169   guardian=mother   absences=0
+Row#171   guardian=mother   absences=2
+Row#172   guardian=mother   absences=0
+Row#173   guardian=mother   absences=0
+Row#174   guardian=mother   absences=4
+Row#175   guardian=mother   absences=4
+Row#176   guardian=mother   absences=2
+Row#178   guardian=mother   absences=10
+Row#179   guardian=mother   absences=4
+Row#180   guardian=mother   absences=10
+Row#181   guardian=mother   absences=2
+Row#183   guardian=mother   absences=56
+Row#184   guardian=mother   absences=14
+Row#185   guardian=mother   absences=12
+Row#186   guardian=mother   absences=2
+Row#187   guardian=mother   absences=0
+Row#188   guardian=mother   absences=6
+Row#189   guardian=mother   absences=4
+Row#190   guardian=mother   absences=10
+Row#191   guardian=mother   absences=0
+Row#193   guardian=mother   absences=8
+Row#196   guardian=mother   absences=4
+Row#198   guardian=mother   absences=24
+Row#199   guardian=mother   absences=0
+Row#200   guardian=mother   absences=2
+Row#201   guardian=mother   absences=6
+Row#202   guardian=mother   absences=4
+Row#203   guardian=mother   absences=18
+Row#204   guardian=mother   absences=6
+Row#205   guardian=mother   absences=28
+Row#206   guardian=mother   absences=5
+Row#207   guardian=mother   absences=10
+Row#208   guardian=mother   absences=6
+Row#209   guardian=mother   absences=6
+Row#211   guardian=mother   absences=13
+Row#212   guardian=mother   absences=0
+Row#213   guardian=mother   absences=15
+Row#214   guardian=mother   absences=12
+Row#215   guardian=mother   absences=2
+Row#216   guardian=mother   absences=22
+Row#219   guardian=mother   absences=4
+Row#220   guardian=mother   absences=2
+Row#221   guardian=mother   absences=0
+Row#222   guardian=mother   absences=2
+Row#223   guardian=mother   absences=0
+Row#224   guardian=mother   absences=0
+Row#225   guardian=mother   absences=16
+Row#226   guardian=mother   absences=10
+Row#228   guardian=mother   absences=14
+Row#229   guardian=mother   absences=10
+Row#232   guardian=mother   absences=14
+Row#234   guardian=mother   absences=18
+Row#235   guardian=mother   absences=10
+Row#237   guardian=mother   absences=20
+Row#238   guardian=mother   absences=2
+Row#240   guardian=mother   absences=14
+Row#241   guardian=mother   absences=2
+Row#242   guardian=mother   absences=0
+Row#243   guardian=mother   absences=0
+Row#245   guardian=mother   absences=6
+Row#247   guardian=mother   absences=16
+Row#248   guardian=mother   absences=8
+Row#249   guardian=mother   absences=0
+Row#250   guardian=mother   absences=0
+Row#252   guardian=mother   absences=4
+Row#253   guardian=mother   absences=0
+Row#254   guardian=mother   absences=0
+Row#255   guardian=mother   absences=2
+Row#256   guardian=mother   absences=6
+Row#257   guardian=mother   absences=12
+Row#258   guardian=mother   absences=8
+Row#261   guardian=mother   absences=2
+Row#262   guardian=mother   absences=1
+Row#263   guardian=mother   absences=4
+Row#264   guardian=mother   absences=0
+Row#265   guardian=mother   absences=13
+Row#266   guardian=mother   absences=2
+Row#267   guardian=mother   absences=8
+Row#269   guardian=mother   absences=0
+Row#272   guardian=mother   absences=2
+Row#273   guardian=mother   absences=2
+Row#274   guardian=mother   absences=2
+Row#275   guardian=mother   absences=6
+Row#276   guardian=mother   absences=75
+Row#277   guardian=mother   absences=22
+Row#279   guardian=mother   absences=8
+Row#280   guardian=mother   absences=30
+Row#281   guardian=mother   absences=19
+Row#282   guardian=mother   absences=1
+Row#283   guardian=mother   absences=4
+Row#284   guardian=mother   absences=4
+Row#286   guardian=mother   absences=5
+Row#287   guardian=mother   absences=6
+Row#288   guardian=mother   absences=6
+Row#289   guardian=mother   absences=9
+Row#290   guardian=mother   absences=11
+Row#291   guardian=mother   absences=0
+Row#292   guardian=mother   absences=12
+Row#293   guardian=mother   absences=6
+Row#294   guardian=mother   absences=8
+Row#295   guardian=mother   absences=4
+Row#299   guardian=mother   absences=5
+Row#300   guardian=mother   absences=14
+Row#302   guardian=mother   absences=0
+Row#316   guardian=mother   absences=0
+Row#317   guardian=mother   absences=9
+Row#319   guardian=mother   absences=2
+Row#320   guardian=mother   absences=23
+Row#321   guardian=mother   absences=12
+Row#322   guardian=mother   absences=3
+Row#325   guardian=mother   absences=3
+Row#326   guardian=mother   absences=3
+Row#327   guardian=mother   absences=8
+Row#328   guardian=mother   absences=7
+Row#329   guardian=mother   absences=4
+Row#330   guardian=mother   absences=2
+Row#332   guardian=mother   absences=0
+Row#334   guardian=mother   absences=0
+Row#335   guardian=mother   absences=16
+Row#337   guardian=mother   absences=0
+Row#338   guardian=mother   absences=7
+Row#339   guardian=mother   absences=4
+Row#342   guardian=mother   absences=11
+Row#344   guardian=mother   absences=4
+Row#345   guardian=mother   absences=7
+Row#346   guardian=mother   absences=9
+Row#347   guardian=mother   absences=0
+Row#348   guardian=mother   absences=0
+Row#349   guardian=mother   absences=10
+Row#351   guardian=mother   absences=2
+Row#352   guardian=mother   absences=7
+Row#354   guardian=mother   absences=4
+Row#357   guardian=mother   absences=2
+Row#360   guardian=mother   absences=0
+Row#361   guardian=mother   absences=2
+Row#362   guardian=mother   absences=0
+Row#363   guardian=mother   absences=0
+Row#365   guardian=mother   absences=4
+Row#366   guardian=mother   absences=0
+Row#367   guardian=mother   absences=0
+Row#372   guardian=mother   absences=8
+Row#373   guardian=mother   absences=14
+Row#374   guardian=mother   absences=0
+Row#375   guardian=mother   absences=2
+Row#377   guardian=mother   absences=4
+Row#378   guardian=mother   absences=0
+Row#379   guardian=mother   absences=17
+Row#381   guardian=mother   absences=5
+Row#383   guardian=mother   absences=0
+Row#385   guardian=mother   absences=2
+Row#386   guardian=mother   absences=7
+Row#387   guardian=mother   absences=0
+Row#388   guardian=mother   absences=0
+Row#389   guardian=mother   absences=0
+Row#391   guardian=mother   absences=3
+Row#393   guardian=mother   absences=0
+
+-- Query: absences=0 --
+Row#6   guardian=mother   absences=0
+Row#8   guardian=mother   absences=0
+Row#9   guardian=mother   absences=0
+Row#10   guardian=mother   absences=0
+Row#14   guardian=other   absences=0
+Row#20   guardian=mother   absences=0
+Row#21   guardian=father   absences=0
+Row#23   guardian=mother   absences=0
+Row#30   guardian=mother   absences=0
+Row#31   guardian=mother   absences=0
+Row#32   guardian=mother   absences=0
+Row#33   guardian=mother   absences=0
+Row#34   guardian=mother   absences=0
+Row#35   guardian=father   absences=0
+Row#43   guardian=father   absences=0
+Row#53   guardian=mother   absences=0
+Row#56   guardian=mother   absences=0
+Row#64   guardian=father   absences=0
+Row#70   guardian=father   absences=0
+Row#71   guardian=mother   absences=0
+Row#77   guardian=mother   absences=0
+Row#90   guardian=mother   absences=0
+Row#93   guardian=mother   absences=0
+Row#99   guardian=mother   absences=0
+Row#101   guardian=father   absences=0
+Row#104   guardian=mother   absences=0
+Row#111   guardian=father   absences=0
+Row#117   guardian=father   absences=0
+Row#124   guardian=mother   absences=0
+Row#125   guardian=father   absences=0
+Row#126   guardian=mother   absences=0
+Row#128   guardian=mother   absences=0
+Row#130   guardian=father   absences=0
+Row#131   guardian=mother   absences=0
+Row#134   guardian=mother   absences=0
+Row#135   guardian=mother   absences=0
+Row#136   guardian=mother   absences=0
+Row#137   guardian=other   absences=0
+Row#138   guardian=mother   absences=0
+Row#139   guardian=mother   absences=0
+Row#140   guardian=father   absences=0
+Row#144   guardian=mother   absences=0
+Row#145   guardian=father   absences=0
+Row#146   guardian=father   absences=0
+Row#148   guardian=mother   absences=0
+Row#149   guardian=mother   absences=0
+Row#150   guardian=mother   absences=0
+Row#153   guardian=mother   absences=0
+Row#154   guardian=mother   absences=0
+Row#160   guardian=mother   absences=0
+Row#162   guardian=mother   absences=0
+Row#164   guardian=mother   absences=0
+Row#167   guardian=father   absences=0
+Row#168   guardian=mother   absences=0
+Row#169   guardian=mother   absences=0
+Row#170   guardian=father   absences=0
+Row#172   guardian=mother   absences=0
+Row#173   guardian=mother   absences=0
+Row#182   guardian=father   absences=0
+Row#187   guardian=mother   absences=0
+Row#191   guardian=mother   absences=0
+Row#194   guardian=father   absences=0
+Row#195   guardian=father   absences=0
+Row#199   guardian=mother   absences=0
+Row#212   guardian=mother   absences=0
+Row#221   guardian=mother   absences=0
+Row#223   guardian=mother   absences=0
+Row#224   guardian=mother   absences=0
+Row#239   guardian=father   absences=0
+Row#242   guardian=mother   absences=0
+Row#243   guardian=mother   absences=0
+Row#244   guardian=other   absences=0
+Row#249   guardian=mother   absences=0
+Row#250   guardian=mother   absences=0
+Row#253   guardian=mother   absences=0
+Row#254   guardian=mother   absences=0
+Row#259   guardian=father   absences=0
+Row#264   guardian=mother   absences=0
+Row#269   guardian=mother   absences=0
+Row#291   guardian=mother   absences=0
+Row#296   guardian=other   absences=0
+Row#298   guardian=father   absences=0
+Row#301   guardian=father   absences=0
+Row#302   guardian=mother   absences=0
+Row#303   guardian=father   absences=0
+Row#306   guardian=other   absences=0
+Row#308   guardian=father   absences=0
+Row#310   guardian=other   absences=0
+Row#316   guardian=mother   absences=0
+Row#318   guardian=father   absences=0
+Row#324   guardian=father   absences=0
+Row#332   guardian=mother   absences=0
+Row#333   guardian=other   absences=0
+Row#334   guardian=mother   absences=0
+Row#337   guardian=mother   absences=0
+Row#341   guardian=father   absences=0
+Row#343   guardian=father   absences=0
+Row#347   guardian=mother   absences=0
+Row#348   guardian=mother   absences=0
+Row#355   guardian=father   absences=0
+Row#359   guardian=father   absences=0
+Row#360   guardian=mother   absences=0
+Row#362   guardian=mother   absences=0
+Row#363   guardian=mother   absences=0
+Row#364   guardian=father   absences=0
+Row#366   guardian=mother   absences=0
+Row#367   guardian=mother   absences=0
+Row#368   guardian=father   absences=0
+Row#374   guardian=mother   absences=0
+Row#378   guardian=mother   absences=0
+Row#383   guardian=mother   absences=0
+Row#387   guardian=mother   absences=0
+Row#388   guardian=mother   absences=0
+Row#389   guardian=mother   absences=0
+Row#393   guardian=mother   absences=0
